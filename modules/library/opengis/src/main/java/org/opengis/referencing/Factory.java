@@ -36,7 +36,7 @@ public interface Factory {
     /**
      * Returns the vendor responsible for creating this factory implementation. Many implementations
      * may be available for the same factory interface. Implementations are usually managed by a
-     * {@linkplain javax.imageio.spi.ServiceRegistry service registry}.
+     * {@linkplain java.util.ServiceLoader service loader}.
      *
      * @return The vendor for this factory implementation.
      */

@@ -28,6 +28,7 @@ import java.util.HashSet;
 import java.util.TreeSet;
 import javax.measure.unit.Unit;
 import javax.measure.quantity.Length;
+import javax.imageio.spi.ServiceRegistry.Filter;
 import javax.measure.converter.ConversionException;
 
 import org.opengis.metadata.citation.Citation;
@@ -198,7 +199,7 @@ public class DefaultMathTransformFactory extends ReferencingFactory implements M
     /**
      * A filter for the set of available operations.
      */
-    private static final class MethodFilter implements FactoryRegistry.Filter {
+    private static final class MethodFilter implements Filter {
         /**
          * The expected type ({@code Projection.class}) for projections).
          */
