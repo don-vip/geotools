@@ -69,7 +69,6 @@ import org.geotools.gml2.GMLConfiguration;
 import org.geotools.gml2.bindings.GML2ParsingUtils;
 import org.geotools.gtxml.GTXML;
 import org.geotools.referencing.CRS;
-import org.geotools.util.PartiallyOrderedSet;
 import org.geotools.xml.Configuration;
 import org.geotools.xml.Encoder;
 import org.geotools.xml.Parser;
