@@ -127,11 +127,11 @@ public class PartiallyOrderedSet<E> extends AbstractSet<E> {
             
         }
 
-        public void addOutgoing(DirectedGraphNode<E> targetNode) {
+        public boolean addOutgoing(DirectedGraphNode<E> targetNode) {
             // keep the link between two nodes going in a single direction
             targetNode.ingoings.add(this);
             targetNode.outgoings.remove(this);
-            outgoings.add(targetNode);
+            return outgoings.add(targetNode);
         }
 
         public Collection<DirectedGraphNode<E>> getOutgoings() {
