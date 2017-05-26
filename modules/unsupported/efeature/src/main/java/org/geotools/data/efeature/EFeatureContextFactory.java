@@ -23,8 +23,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import javax.imageio.spi.ServiceRegistry;
-
 import org.geotools.data.efeature.impl.EFeatureContextImpl;
 import org.geotools.data.efeature.impl.EFeatureIDFactoryImpl;
 import org.geotools.factory.BufferedFactory;
@@ -53,7 +51,7 @@ public class EFeatureContextFactory implements BufferedFactory {
     
     /**
      * Weak reference to instance cached by the 
-     * {@link ServiceRegistry service registry}.
+     * {@link java.util.ServiceLoader service loader}.
      */
     private static WeakReference<EFeatureContextFactory> eInstance;
     
