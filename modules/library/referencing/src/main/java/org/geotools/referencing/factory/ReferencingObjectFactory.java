@@ -84,7 +84,7 @@ public class ReferencingObjectFactory extends ReferencingFactory
 
     /**
      * Constructs a default factory. This method is public in order to allows instantiations
-     * from a {@linkplain javax.imageio.spi.ServiceRegistry service registry}. Users should
+     * from a {@linkplain java.util.ServiceLoader service loader}. Users should
      * not instantiate this factory directly, but use one of the following lines instead:
      *
      * <blockquote><pre>

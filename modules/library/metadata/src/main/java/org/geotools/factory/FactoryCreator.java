@@ -17,6 +17,9 @@
 package org.geotools.factory;
 
 import java.util.*;
+
+import javax.imageio.spi.ServiceRegistry.Filter;
+
 import java.lang.ref.Reference;
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Modifier;

@@ -14,7 +14,7 @@
  *    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
  *    Lesser General Public License for more details.
  */
-package org.geotools;
+package org.geotools.util;
 
 import java.util.AbstractSet;
 import java.util.Collection;
@@ -32,7 +32,7 @@ import java.util.Set;
  * 
  * @author Andrea Aime
  */
-class PartiallyOrderedSet<E> extends AbstractSet<E> {
+public class PartiallyOrderedSet<E> extends AbstractSet<E> {
     
     private Map<E, DirectedGraphNode<E>> elementsToNodes = new LinkedHashMap<>();
     
@@ -57,7 +57,7 @@ class PartiallyOrderedSet<E> extends AbstractSet<E> {
         }
     }
     
-    public void setOrder(E source, E target) {
+    public boolean setOrder(E source, E target) {
         DirectedGraphNode<E> sourceNode = elementsToNodes.get(source);
         DirectedGraphNode<E> targetNode = elementsToNodes.get(target);
         if(sourceNode == null) {
@@ -66,10 +66,10 @@ class PartiallyOrderedSet<E> extends AbstractSet<E> {
         if(targetNode == null) {
             throw new IllegalArgumentException("Could not find target node in the set: " + target);
         }
-        sourceNode.addOutgoing(targetNode);
+        return sourceNode.addOutgoing(targetNode);
     }
     
-    public void clearOrder(E source, E target) {
+    public boolean clearOrder(E source, E target) {
         DirectedGraphNode<E> sourceNode = elementsToNodes.get(source);
         DirectedGraphNode<E> targetNode = elementsToNodes.get(target);
         if(sourceNode == null) {
@@ -79,8 +79,10 @@ class PartiallyOrderedSet<E> extends AbstractSet<E> {
             throw new IllegalArgumentException("Could not find target node in the set: " + target);
         }
         // clear both directions to be sure
-        sourceNode.removeOutgoing(targetNode);
-        targetNode.removeOutgoing(sourceNode);
+        boolean result = false;
+        result |= sourceNode.removeOutgoing(targetNode);
+        result |= targetNode.removeOutgoing(sourceNode);
+        return result;
     }
 
     @Override
@@ -125,11 +127,11 @@ class PartiallyOrderedSet<E> extends AbstractSet<E> {
             
         }
 
-        public void addOutgoing(DirectedGraphNode<E> targetNode) {
+        public boolean addOutgoing(DirectedGraphNode<E> targetNode) {
             // keep the link between two nodes going in a single direction
             targetNode.ingoings.add(this);
             targetNode.outgoings.remove(this);
-            outgoings.add(targetNode);
+            return outgoings.add(targetNode);
         }
 
         public Collection<DirectedGraphNode<E>> getOutgoings() {
@@ -197,7 +199,7 @@ class PartiallyOrderedSet<E> extends AbstractSet<E> {
                     residualInDegrees.put(node, new Countdown(inDegree));
                 }
             }
-            if(sources.size() == 0) {
+            if(sources.size() == 0 && !residualInDegrees.isEmpty()) {
                 throwLoopException();
             }
         }
