@@ -32,7 +32,7 @@ import java.util.Set;
  * 
  * @author Andrea Aime
  */
-class PartiallyOrderedSet<E> extends AbstractSet<E> {
+public class PartiallyOrderedSet<E> extends AbstractSet<E> {
     
     private Map<E, DirectedGraphNode<E>> elementsToNodes = new LinkedHashMap<>();
     
